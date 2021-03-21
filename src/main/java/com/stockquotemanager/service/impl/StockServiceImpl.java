@@ -24,7 +24,7 @@ public class StockServiceImpl implements StockService {
 	@Override
 	public String addNewStockQuote(StockJson stock) {
 		
-		if(!StockUtils.stockExists(stock, stockManagerMapper.callListStockManager())) {
+		if(!StockUtils.stockExists(stock,stockManagerMapper.callListStockManager())) {
 			return "Stock Id Invalid";
 		}
 		
@@ -47,5 +47,6 @@ public class StockServiceImpl implements StockService {
 		List<StockDatabase> stockDatabases = (List<StockDatabase>) stockRepository.findByName(name);			
 		return StockUtils.translateListStockDatabaseToStockJson(stockDatabases);
 	}
+
 
 }

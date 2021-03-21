@@ -1,4 +1,4 @@
-package com.stockquotemanager.service.impl;
+package com.stockquotemanager.utils;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -13,11 +13,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 import com.stockquotemanager.model.StockDatabase;
 import com.stockquotemanager.model.StockJson;
 import com.stockquotemanager.model.StockManager;
-import com.stockquotemanager.utils.StockManagerTestConstants;
 import com.stockquotemanager.utils.StockUtils;
 
 @RunWith(MockitoJUnitRunner.class)
-public class StockServiceImplTest {
+public class StockUtilsTest {
 
 	@Test
 	public void translateStockJsonToListStockDatabaseTest() {
