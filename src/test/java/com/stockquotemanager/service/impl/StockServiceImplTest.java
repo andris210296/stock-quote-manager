@@ -27,5 +27,15 @@ public class StockServiceImplTest {
 		assertEquals(stockJsonExample.getQuotes().get("2019-01-01"), result.get(0).getPrice());
 
 	}
+	
+	@Test
+	public void translateListStockDatabaseToStockJson() {
+		List<StockDatabase> stockDatabasesExample = StockManagerTestConstants.exampleListStockDatabase();
+		
+		StockJson result = StockUtils.translateListStockDatabaseToStockJson(stockDatabasesExample);
+		
+		assertEquals(stockDatabasesExample.get(0).getName(), result.getId());
+		assertEquals(stockDatabasesExample.get(0).getPrice(), result.getQuotes().get("2019-01-01"));
+	}
 
 }

@@ -23,5 +23,10 @@ public class StockController {
 	public @ResponseBody Iterable<StockDatabase> getAllQuotes() {
 		return stockService.getAllQuotes();
 	}
+	
+	@GetMapping(path = "/{name}")
+	public @ResponseBody StockJson getOneStock(@PathVariable("name") String name) {
+		return stockService.getOneStock(name);
+	}
 
 }

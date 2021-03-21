@@ -1,6 +1,7 @@
 package com.stockquotemanager.utils;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -24,6 +25,20 @@ public class StockUtils {
 		}
 
 		return stockDatabases;
+	}
+	
+	public static StockJson translateListStockDatabaseToStockJson(List<StockDatabase> stockDatabases) {
+		
+		LinkedHashMap<String, String> hashMap = new LinkedHashMap<String, String>();
+
+		for (StockDatabase stockDatabase : stockDatabases) {
+			hashMap.put(stockDatabase.getDate(), stockDatabase.getPrice());
+		}
+		
+		return new StockJson.Builder()
+				.setId(stockDatabases.get(0).getName())
+				.setQuotes(hashMap)
+				.build();
 	}
 
 }

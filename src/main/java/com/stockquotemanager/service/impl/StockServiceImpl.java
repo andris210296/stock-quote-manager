@@ -34,4 +34,10 @@ public class StockServiceImpl implements StockService {
 		return stockRepository.findAll();
 	}
 
+	@Override
+	public StockJson getOneStock(String name) {
+		List<StockDatabase> stockDatabases = (List<StockDatabase>) stockRepository.findByName(name);			
+		return StockUtils.translateListStockDatabaseToStockJson(stockDatabases);
+	}
+
 }
