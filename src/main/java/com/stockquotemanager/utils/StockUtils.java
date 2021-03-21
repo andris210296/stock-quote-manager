@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import com.stockquotemanager.model.StockDatabase;
 import com.stockquotemanager.model.StockJson;
+import com.stockquotemanager.model.StockManager;
 
 public class StockUtils {
 
@@ -15,30 +16,37 @@ public class StockUtils {
 		List<StockDatabase> stockDatabases = new ArrayList<StockDatabase>();
 
 		for (Entry<String, String> map : stockJson.getQuotes().entrySet()) {
-					
-			stockDatabases.add(new StockDatabase.Builder()
-					.setName(stockJson.getId())
-					.setDate(map.getKey())
-					.setPrice(map.getValue())
-					.build());
+
+			stockDatabases.add(new StockDatabase.Builder().setName(stockJson.getId()).setDate(map.getKey())
+					.setPrice(map.getValue()).build());
 
 		}
 
 		return stockDatabases;
 	}
-	
+
 	public static StockJson translateListStockDatabaseToStockJson(List<StockDatabase> stockDatabases) {
-		
+
 		LinkedHashMap<String, String> hashMap = new LinkedHashMap<String, String>();
 
 		for (StockDatabase stockDatabase : stockDatabases) {
 			hashMap.put(stockDatabase.getDate(), stockDatabase.getPrice());
 		}
-		
-		return new StockJson.Builder()
-				.setId(stockDatabases.get(0).getName())
-				.setQuotes(hashMap)
-				.build();
+
+		return new StockJson.Builder().setId(stockDatabases.get(0).getName()).setQuotes(hashMap).build();
 	}
+
+	public static boolean stockExists(StockJson stock, List<StockManager> stockManagers) {
+		
+		for (StockManager stockManager : stockManagers) {
+			if(stockManager.getId().equals(stock.getId())) {
+				return true;
+			}
+		}		
+
+		return false;
+	}
+	
+	
 
 }

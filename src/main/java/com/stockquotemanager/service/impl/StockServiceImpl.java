@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stockquotemanager.mapper.StockManagerMapper;
 import com.stockquotemanager.model.StockDatabase;
 import com.stockquotemanager.model.StockJson;
 import com.stockquotemanager.repository.StockRepository;
@@ -16,10 +17,17 @@ public class StockServiceImpl implements StockService {
 
 	@Autowired
 	private StockRepository stockRepository;
+	
+	@Autowired
+	private StockManagerMapper stockManagerMapper;
 
 	@Override
 	public String addNewStockQuote(StockJson stock) {
-
+		
+		if(!StockUtils.stockExists(stock, stockManagerMapper.callListStockManager())) {
+			return "Stock Id Invalid";
+		}
+		
 		List<StockDatabase> stockDatabases = StockUtils.translateStockJsonToListStockDatabase(stock);
 		
 		for (StockDatabase stockDatabase : stockDatabases) {

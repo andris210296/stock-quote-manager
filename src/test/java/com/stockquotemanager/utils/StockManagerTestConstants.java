@@ -4,10 +4,11 @@ import java.util.*;
 
 import com.stockquotemanager.model.StockDatabase;
 import com.stockquotemanager.model.StockJson;
+import com.stockquotemanager.model.StockManager;
 
 public class StockManagerTestConstants {
 
-	public static StockJson exampleStockJson() {
+	public static StockJson exampleStockJson(String idName) {
 
 		Map<String, String> quotes = new LinkedHashMap<String, String>();
 		quotes.put("2019-01-01", "10");
@@ -15,7 +16,7 @@ public class StockManagerTestConstants {
 		quotes.put("2019-01-03", "14");
 
 		return new StockJson.Builder()
-				.setId("petr3")
+				.setId(idName)
 				.setQuotes(quotes)
 				.build();
 	}
@@ -47,5 +48,19 @@ public class StockManagerTestConstants {
 				
 		return stockDatabases;
 		
+	}
+	
+	
+	public static List<StockManager> exampleListStockManager(){
+		List<StockManager> stockManagers = new ArrayList<StockManager>();
+		stockManagers.add(new StockManager.Builder()
+				.setId("petr4")
+				.setDescription("Petrobras PN")
+				.build());
+		stockManagers.add(new StockManager.Builder()
+				.setId("vale5")
+				.setDescription("Vale do Rio Doce PN")
+				.build());
+		return stockManagers;
 	}
 }
