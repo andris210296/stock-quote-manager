@@ -24,4 +24,8 @@ This is an application that communicates with an stock-manager and its responsib
 ```
 
 ##### Read stock quote
->> http://localhost:8081/ggbr4
+> http://localhost:8081/ggbr4
+
+##### Read all stock
+> http://localhost:8081/allQuotes
+
