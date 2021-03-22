@@ -59,19 +59,12 @@ public class StockManagerMapperImpl implements StockManagerMapper {
 
 			CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
-			try {
-				HttpPost request = new HttpPost("http://localhost:8080/notification");
-				StringEntity params = new StringEntity(json.toString());
-				request.addHeader("content-type", "application/json");
-				request.setEntity(params);
-				HttpResponse response = httpClient.execute(request);
-				HttpEntity entity = response.getEntity();
-
-			} catch (Exception ex) {
-
-			} finally {
-				httpClient.close();
-			}
+			HttpPost request = new HttpPost("http://localhost:8080/notification");
+			StringEntity params = new StringEntity(json.toString());
+			request.addHeader("content-type", "application/json");
+			request.setEntity(params);
+			HttpResponse response = httpClient.execute(request);
+			HttpEntity entity = response.getEntity();
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

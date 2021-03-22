@@ -10,5 +10,7 @@ public interface StockService {
 	public Iterable<StockDatabase> getAllQuotes();
 	
 	public StockJson getOneStock(String name);
+	
+	public String resetCache();
 
 }

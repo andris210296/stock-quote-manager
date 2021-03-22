@@ -8,7 +8,6 @@ import com.stockquotemanager.model.StockJson;
 import com.stockquotemanager.service.StockService;
 
 @RestController
-@RequestMapping(path = "/stock")
 public class StockController {
 
 	@Autowired
@@ -27,6 +26,11 @@ public class StockController {
 	@GetMapping(path = "/{name}")
 	public @ResponseBody StockJson getOneStock(@PathVariable("name") String name) {
 		return stockService.getOneStock(name);
+	}
+	
+	@DeleteMapping(path = "/stockcache")
+	public String resetCache() {		
+		return stockService.resetCache();		
 	}
 
 }
